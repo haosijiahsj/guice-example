@@ -19,8 +19,8 @@ public class ResourceModule extends AbstractModule {
     protected void configure() {
         this.bind(ServerProperties.class)
                 .toInstance(YamlUtils.getModelFromYaml(CONFIG_PATH, SERVER_PREFIX, ServerProperties.class));
-        this.bind(MybatisProperties.class)
-                .toInstance(YamlUtils.getModelFromYaml(CONFIG_PATH, JDBC_PREFIX, MybatisProperties.class));
+//        this.bind(MybatisProperties.class)
+//                .toInstance(YamlUtils.getModelFromYaml(CONFIG_PATH, JDBC_PREFIX, MybatisProperties.class));
     }
 
 }

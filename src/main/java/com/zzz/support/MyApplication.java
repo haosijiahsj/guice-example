@@ -5,6 +5,7 @@ import com.google.common.collect.Sets;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.zzz.config.AppModule;
+import com.zzz.controller.UserController;
 import com.zzz.controller.ZzzController;
 
 import javax.ws.rs.core.Application;
@@ -26,6 +27,7 @@ public class MyApplication extends Application {
         Set<Object> resources = Sets.newHashSet();
         Injector injector = Guice.createInjector(new AppModule());
         resources.add(injector.getInstance(ZzzController.class));
+        resources.add(injector.getInstance(UserController.class));
         return resources;
     }
 

@@ -7,7 +7,7 @@
 		<setting name="logImpl" value="SLF4J" />
 	</settings>
 	<typeAliases>
-		<typeAlias alias="PageRequest" type="com.ln.simplerest.support.mybatis.data.PageRequest"/>
+		<typeAlias alias="userVo" type="com.zzz.model.UserVo"/>
 	</typeAliases>
 	<environments default="development">
 		<environment id="dev">
