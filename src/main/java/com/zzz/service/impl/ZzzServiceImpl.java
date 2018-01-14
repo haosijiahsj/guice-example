@@ -32,4 +32,9 @@ public class ZzzServiceImpl implements ZzzService {
         zzzDao.delete();
     }
 
+    @Override
+    public String sayHello() {
+        return "Hello World !";
+    }
+
 }

@@ -12,4 +12,6 @@ public interface ZzzService {
 
     void delete();
 
+    String sayHello();
+
 }
