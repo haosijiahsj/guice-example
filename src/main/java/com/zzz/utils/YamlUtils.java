@@ -20,7 +20,7 @@ import java.util.Map;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class YamlUtils {
 
-    public static <T> T getServerModelFromYaml(String path, Class<T> clazz) {
+    public static <T> T getModelFromYaml(String path, String prefix, Class<T> clazz) {
         Yaml yaml = new Yaml();
         URL url = YamlUtils.class.getClassLoader().getResource(path);
 
@@ -30,7 +30,7 @@ public class YamlUtils {
 
         try (FileInputStream fileInputStream = new FileInputStream(url.getFile())) {
             Map map = yaml.load(fileInputStream);
-            Map valueMap = (Map) map.get("server");
+            Map valueMap = (Map) map.get(prefix);
             T t = clazz.newInstance();
             for (Field field : clazz.getDeclaredFields()) {
                 field.setAccessible(true);

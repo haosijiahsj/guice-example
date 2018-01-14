@@ -14,14 +14,13 @@ import com.zzz.utils.YamlUtils;
  */
 public class AppModule extends AbstractModule {
 
-    private static final String CONFIG_PATH = "app.yml";
-
     @Override
     protected void configure() {
         this.bind(ZzzDao.class).to(ZzzDaoImpl.class);
         this.bind(ZzzService.class).to(ZzzServiceImpl.class);
 
-        this.bind(ServerProperties.class).toInstance(YamlUtils.getServerModelFromYaml(CONFIG_PATH, ServerProperties.class));
+        this.install(new ResourceModule());
+        this.install(new MybatisModule());
     }
 
 }

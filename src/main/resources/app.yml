@@ -3,3 +3,7 @@ server:
   port: 8080
   servletPath: /
   deploymentName: guice-example
+jdbc:
+  url: jdbc:mysql://localhost:3306/graduate-design-ww
+  username: root
+  password: 123456
