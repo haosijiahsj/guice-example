@@ -7,10 +7,9 @@ import com.zzz.model.UserVo;
 import com.zzz.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.Map;
 
 /**
@@ -28,11 +27,9 @@ public class UserController {
 
     @GET
     @Path("/getByUsername")
-    public Map<String, Object> getByUsername() {
-        UserVo userVo = userService.getByUsername("hsj");
-        Map<String , Object> map = Maps.newHashMap();
-        map.put("result", userVo);
-        return map;
+    public Response getByUsername(@QueryParam("username") String username) {
+        UserVo userVo = userService.getByUsername(username);
+        return Response.status(200).entity(userVo).build();
     }
 
 }

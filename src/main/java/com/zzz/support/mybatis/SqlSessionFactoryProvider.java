@@ -20,21 +20,13 @@ import java.util.Properties;
 @Singleton
 public class SqlSessionFactoryProvider implements Provider<SqlSessionFactory> {
 
-//    @Inject
-//    private MybatisProperties mybatisProperties;
-
     @Override
     public SqlSessionFactory get() {
-//        Properties properties = new Properties();
-//        properties.setProperty("jdbc.url", mybatisProperties.getUrl());
-//        properties.setProperty("jdbc.username", mybatisProperties.getUsername());
-//        properties.setProperty("jdbc.password", mybatisProperties.getPassword());
-
         InputStream inputStream;
         try {
             inputStream = Resources.getResourceAsStream("mybatis-config.xml");
         } catch (IOException e) {
-            throw new IllegalArgumentException(String.format("载入mybatis文件：%s失败！"));
+            throw new IllegalArgumentException("载入mybatis-config.xml文件：%s失败！");
         }
         return new SqlSessionFactoryBuilder().build(inputStream);
     }
