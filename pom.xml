@@ -9,6 +9,14 @@
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
+        <!-- guice依赖注入框架依赖开始 -->
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>4.0</version>
+        </dependency>
+        <!-- guice依赖注入框架依赖结束 -->
+
         <!-- undertow依赖开始 -->
         <dependency>
             <groupId>io.undertow</groupId>
@@ -20,6 +28,9 @@
             <artifactId>undertow-servlet</artifactId>
             <version>1.4.21.Final</version>
         </dependency>
+        <!-- undertow依赖结束 -->
+
+        <!-- resteasy依赖开始 -->
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-undertow</artifactId>
@@ -35,7 +46,7 @@
             <artifactId>resteasy-guice</artifactId>
             <version>3.0.8.Final</version>
         </dependency>
-        <!-- undertow依赖结束 -->
+        <!-- resteasy依赖结束 -->
 
         <!-- mysql驱动依赖开始 -->
         <dependency>
@@ -47,29 +58,18 @@
         </dependency>
         <!-- mysql驱动依赖结束 -->
 
-        <!-- guice依赖注入框架依赖开始 -->
-        <dependency>
-            <groupId>com.google.inject</groupId>
-            <artifactId>guice</artifactId>
-            <version>4.0</version>
-        </dependency>
+        <!-- mybatis依赖开始 -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>3.4.5</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.mybatis</groupId>-->
-            <!--<artifactId>mybatis-guice</artifactId>-->
-            <!--<version>3.11-SNAPSHOT</version>-->
-        <!--</dependency>-->
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-            <version>1.1.6</version>
-            <optional>true</optional>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-guice</artifactId>
+            <version>3.8</version>
         </dependency>
-        <!-- guice依赖注入框架依赖结束 -->
+        <!-- mybatis依赖结束 -->
 
         <!-- 第三方工具包依赖开始 -->
         <dependency>

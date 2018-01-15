@@ -28,8 +28,21 @@ public class UserController {
     @GET
     @Path("/getByUsername")
     public Response getByUsername(@QueryParam("username") String username) {
-        UserVo userVo = userService.getByUsername(username);
-        return Response.status(200).entity(userVo).build();
+        try {
+            return Response.ok(userService.getByUsername(username)).build();
+        } catch (Exception e) {
+            return Response.serverError().build();
+        }
+    }
+
+    @GET
+    @Path("/findAll")
+    public Response findAll() {
+        try {
+            return Response.ok(userService.findAll()).build();
+        } catch (Exception e) {
+            return Response.serverError().build();
+        }
     }
 
 }

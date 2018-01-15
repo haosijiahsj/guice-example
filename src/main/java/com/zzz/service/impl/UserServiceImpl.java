@@ -6,6 +6,8 @@ import com.zzz.dao.UserMapper;
 import com.zzz.model.UserVo;
 import com.zzz.service.UserService;
 
+import java.util.List;
+
 /**
  * @author 胡胜钧
  * @date 1/14 0014.
@@ -22,5 +24,9 @@ public class UserServiceImpl implements UserService {
         return userMapper.getByUsername(username);
     }
 
+    @Override
+    public List<UserVo> findAll() {
+        return userMapper.findAll();
+    }
 
 }

@@ -8,7 +8,12 @@
         <result column="username" property="username" />
         <result column="password" property="password" />
     </resultMap>
+
     <select id="getByUsername" resultMap="userVo" parameterType="String">
         SELECT * FROM user u WHERE u.username = #{username}
+    </select>
+
+    <select id="findAll" resultMap="userVo">
+        SELECT * FROM user
     </select>
 </mapper>  
