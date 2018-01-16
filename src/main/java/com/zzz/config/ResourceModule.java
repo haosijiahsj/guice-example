@@ -1,7 +1,6 @@
 package com.zzz.config;
 
 import com.google.inject.AbstractModule;
-import com.zzz.config.model.MybatisProperties;
 import com.zzz.config.model.ServerProperties;
 import com.zzz.utils.YamlUtils;
 

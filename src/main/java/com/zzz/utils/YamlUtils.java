@@ -4,10 +4,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.yaml.snakeyaml.Yaml;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.Arrays;
@@ -28,8 +25,8 @@ public class YamlUtils {
             throw new IllegalStateException("url为空！");
         }
 
-        try (FileInputStream fileInputStream = new FileInputStream(url.getFile())) {
-            Map map = yaml.load(fileInputStream);
+        try (InputStream inputStream = url.openConnection().getInputStream()) {
+            Map map = yaml.load(inputStream);
             Map valueMap = (Map) map.get(prefix);
             T t = clazz.newInstance();
             for (Field field : clazz.getDeclaredFields()) {
