@@ -3,7 +3,7 @@ package com.zzz.service.impl;
 import com.google.common.base.Preconditions;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.zzz.dao.UserMapper;
+import com.zzz.mapper.UserMapper;
 import com.zzz.model.UserVo;
 import com.zzz.service.UserService;
 import org.mybatis.guice.transactional.Transactional;
@@ -44,6 +44,13 @@ public class UserServiceImpl implements UserService {
         Preconditions.checkNotNull(userVo, "入参userVo不能为空！");
 
         userMapper.update(userVo);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        Preconditions.checkNotNull(id, "入参id不能为空！");
+
+        userMapper.delete(id);
     }
 
 }

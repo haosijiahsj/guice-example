@@ -18,4 +18,6 @@ public interface UserService {
 
     void update(UserVo userVo);
 
+    void delete(Integer id);
+
 }

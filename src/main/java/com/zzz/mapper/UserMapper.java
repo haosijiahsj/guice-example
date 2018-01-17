@@ -1,4 +1,4 @@
-package com.zzz.dao;
+package com.zzz.mapper;
 
 import com.zzz.model.UserVo;
 
@@ -17,5 +17,7 @@ public interface UserMapper {
     void save(UserVo userVo);
 
     void update(UserVo userVo);
+
+    void delete(Integer id);
 
 }

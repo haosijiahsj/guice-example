@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.zzz.dao.UserMapper">
+<mapper namespace="com.zzz.mapper.UserMapper">
     <resultMap id="userVoMap" type="userVo">
         <id column="id" property="id" />
         <result column="username" property="username" />
         <result column="password" property="password" />
     </resultMap>
 
-    <select id="getByUsername" resultMap="userVoMap" parameterType="String">
+    <select id="getByUsername" resultMap="userVoMap" parameterType="string">
         SELECT * FROM user u WHERE u.username = #{username}
     </select>
 
@@ -24,4 +24,8 @@
     <update id="update" parameterType="userVo">
         UPDATE user SET username = #{username}, password = #{password} WHERE id = #{id}
     </update>
-</mapper>  
+
+    <delete id="delete" parameterType="_int">
+        DELETE FROM user WHERE id = #{id}
+    </delete>
+</mapper>

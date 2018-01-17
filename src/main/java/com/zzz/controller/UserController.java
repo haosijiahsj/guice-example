@@ -1,16 +1,15 @@
 package com.zzz.controller;
 
-import com.google.common.collect.Maps;
+import com.alibaba.fastjson.JSONObject;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.zzz.model.UserVo;
 import com.zzz.service.UserService;
+import com.zzz.support.ResponseEntity;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import java.util.Map;
 
 /**
  * @author 胡胜钧
@@ -27,50 +26,58 @@ public class UserController {
 
     @GET
     @Path("/getByUsername/{username}")
-    public Response getByUsername(@PathParam("username") String username) {
+    public ResponseEntity getByUsername(@PathParam("username") String username) {
         try {
-            return Response.ok(userService.getByUsername(username)).build();
+            return ResponseEntity.ok(userService.getByUsername(username));
         } catch (Exception e) {
-            return Response.serverError().build();
+            return ResponseEntity.serverError(e.getMessage());
         }
     }
 
     @GET
     @Path("/findAll")
-    public Response findAll() {
+    public ResponseEntity findAll() {
         try {
-            return Response.ok(userService.findAll()).build();
+            return ResponseEntity.ok(userService.findAll());
         } catch (Exception e) {
-            return Response.serverError().build();
+            return ResponseEntity.serverError(e.getMessage());
         }
     }
 
     @PUT
     @Path("/save")
-    public Response save() {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public ResponseEntity save(String json) {
         try {
-            UserVo userVo = new UserVo();
-            userVo.setUsername("hsj");
-            userVo.setPassword("123123");
+            UserVo userVo = JSONObject.parseObject(json, UserVo.class);
             userService.save(userVo);
-            return Response.noContent().build();
+            return ResponseEntity.noContent();
         } catch (Exception e) {
-            return Response.serverError().build();
+            return ResponseEntity.serverError(e.getMessage());
         }
     }
 
     @POST
     @Path("/update")
-    public Response update() {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public ResponseEntity update(String json) {
         try {
-            UserVo userVo = new UserVo();
-            userVo.setId(1);
-            userVo.setUsername("hhssjj");
-            userVo.setPassword("123123");
+            UserVo userVo = JSONObject.parseObject(json, UserVo.class);
             userService.update(userVo);
-            return Response.noContent().build();
+            return ResponseEntity.noContent();
         } catch (Exception e) {
-            return Response.serverError().build();
+            return ResponseEntity.serverError(e.getMessage());
+        }
+    }
+
+    @DELETE
+    @Path("/delete/{id}")
+    public ResponseEntity delete(@PathParam("id") Integer id) {
+        try {
+            userService.delete(id);
+            return ResponseEntity.noContent();
+        } catch (Exception e) {
+            return ResponseEntity.serverError(e.getMessage());
         }
     }
 
