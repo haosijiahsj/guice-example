@@ -26,8 +26,8 @@ public class UserController {
     private UserService userService;
 
     @GET
-    @Path("/getByUsername")
-    public Response getByUsername(@QueryParam("username") String username) {
+    @Path("/getByUsername/{username}")
+    public Response getByUsername(@PathParam("username") String username) {
         try {
             return Response.ok(userService.getByUsername(username)).build();
         } catch (Exception e) {
@@ -40,6 +40,35 @@ public class UserController {
     public Response findAll() {
         try {
             return Response.ok(userService.findAll()).build();
+        } catch (Exception e) {
+            return Response.serverError().build();
+        }
+    }
+
+    @PUT
+    @Path("/save")
+    public Response save() {
+        try {
+            UserVo userVo = new UserVo();
+            userVo.setUsername("hsj");
+            userVo.setPassword("123123");
+            userService.save(userVo);
+            return Response.noContent().build();
+        } catch (Exception e) {
+            return Response.serverError().build();
+        }
+    }
+
+    @POST
+    @Path("/update")
+    public Response update() {
+        try {
+            UserVo userVo = new UserVo();
+            userVo.setId(1);
+            userVo.setUsername("hhssjj");
+            userVo.setPassword("123123");
+            userService.update(userVo);
+            return Response.noContent().build();
         } catch (Exception e) {
             return Response.serverError().build();
         }

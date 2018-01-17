@@ -3,17 +3,25 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.zzz.dao.UserMapper">
-    <resultMap id="userVo" type="userVo">
+    <resultMap id="userVoMap" type="userVo">
         <id column="id" property="id" />
         <result column="username" property="username" />
         <result column="password" property="password" />
     </resultMap>
 
-    <select id="getByUsername" resultMap="userVo" parameterType="String">
+    <select id="getByUsername" resultMap="userVoMap" parameterType="String">
         SELECT * FROM user u WHERE u.username = #{username}
     </select>
 
-    <select id="findAll" resultMap="userVo">
+    <select id="findAll" resultMap="userVoMap">
         SELECT * FROM user
     </select>
+
+    <insert id="save" parameterType="userVo">
+        INSERT INTO user(`username`, `password`) VALUES (#{username}, #{password})
+    </insert>
+
+    <update id="update" parameterType="userVo">
+        UPDATE user SET username = #{username}, password = #{password} WHERE id = #{id}
+    </update>
 </mapper>  

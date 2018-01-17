@@ -14,4 +14,8 @@ public interface UserService {
 
     List<UserVo> findAll();
 
+    void save(UserVo userVo);
+
+    void update(UserVo userVo);
+
 }

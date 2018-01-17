@@ -50,4 +50,5 @@
 	<logger name="hammock-cafe" level="ALL" />
 	<logger name="user" level="ALL" />
 	<logger name="ch.qos.logback" level="OFF" />
+	<logger name="dao" level="DEBUG"/>
 </configuration>

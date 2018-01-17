@@ -32,4 +32,18 @@ public class UserServiceImpl implements UserService {
         return userMapper.findAll();
     }
 
+    @Override
+    public void save(UserVo userVo) {
+        Preconditions.checkNotNull(userVo, "入参userVo不能为空！");
+
+        userMapper.save(userVo);
+    }
+
+    @Override
+    public void update(UserVo userVo) {
+        Preconditions.checkNotNull(userVo, "入参userVo不能为空！");
+
+        userMapper.update(userVo);
+    }
+
 }
