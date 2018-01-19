@@ -57,4 +57,20 @@ public class ResponseEntity implements Serializable {
                 .build();
     }
 
+    public static ResponseEntity of(Status status, Object content) {
+        return ResponseEntity.builder()
+                .code(status.getStatusCode())
+                .msg(status.getReasonPhrase())
+                .content(content)
+                .build();
+    }
+
+    public static ResponseEntity of(int code, String msg, Object content) {
+        return ResponseEntity.builder()
+                .code(code)
+                .msg(msg)
+                .content(content)
+                .build();
+    }
+
 }

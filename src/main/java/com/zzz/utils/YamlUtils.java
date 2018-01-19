@@ -2,6 +2,7 @@ package com.zzz.utils;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
@@ -14,6 +15,7 @@ import java.util.Map;
  * @author 胡胜钧
  * @date 1/14 0014.
  */
+@Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class YamlUtils {
 
@@ -22,7 +24,8 @@ public class YamlUtils {
         URL url = YamlUtils.class.getClassLoader().getResource(path);
 
         if (url == null) {
-            throw new IllegalStateException("url为空！");
+            log.error("载入{}失败！", path);
+            return null;
         }
 
         try (InputStream inputStream = url.openConnection().getInputStream()) {
@@ -35,7 +38,8 @@ public class YamlUtils {
             }
             return t;
         } catch (IOException | InstantiationException | IllegalAccessException e) {
-            throw new IllegalStateException(String.format("载入%s失败！", path), e);
+            log.error("解析{}到{}失败！", path, clazz.getName());
+            return null;
         }
     }
 

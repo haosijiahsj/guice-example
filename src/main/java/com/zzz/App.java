@@ -15,8 +15,8 @@ public class App {
 
     public static void main(String[] args) {
         Injector injector = Guice.createInjector(new AppModule());
-        injector.getInstance(RestServer.class).startUp();
-        log.info("guice-example服务启动成功！");
+        injector.getInstance(RestServer.class).startUp(args);
+        log.info("rest服务启动成功！");
     }
 
 }

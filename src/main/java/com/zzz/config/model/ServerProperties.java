@@ -13,7 +13,7 @@ public class ServerProperties {
 
     private Integer port;
     private String host;
-    private String servletPath;
+    private String contextPath;
     private String deploymentName;
 
 }
