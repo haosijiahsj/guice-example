@@ -1,30 +1,35 @@
 package com.zzz.support;
 
+import com.google.common.collect.Lists;
+import com.google.inject.Guice;
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
+import com.google.inject.Injector;
+import com.zzz.config.AppModule;
 import com.zzz.config.model.ServerProperties;
 import com.zzz.utils.CommandLineUtils;
 import io.undertow.Undertow;
-import io.undertow.servlet.api.DeploymentInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.jboss.resteasy.plugins.server.undertow.UndertowJaxrsServer;
+import org.jboss.resteasy.spi.ResteasyDeployment;
 
 /**
  * @author 胡胜钧
  * @date 1/13 0013.
  */
 @Slf4j
-@Singleton
 public class RestServer {
 
     private static final Integer PORT = 8080;
     private static final String CONTEXT_PATH = "/";
     private static final String HOST = "localhost";
 
+    private Injector injector = Guice.createInjector(new AppModule());
+
     @Inject
     private ServerProperties serverProperties;
 
     private void setServerProperties(String[] args) {
+        serverProperties = injector.getInstance(ServerProperties.class);
         if (serverProperties == null) {
             serverProperties = new ServerProperties();
         }
@@ -58,12 +63,10 @@ public class RestServer {
 
         log.info("undertow start up on port ({})", serverProperties.getPort());
 
-        DeploymentInfo deploymentInfo = server.undertowDeployment(MyApplication.class)
-                .setClassLoader(RestServer.class.getClassLoader())
-                .setContextPath(serverProperties.getContextPath())
-                .setDeploymentName(serverProperties.getDeploymentName());
-
-        server.deploy(deploymentInfo);
+        ResteasyDeployment resteasyDeployment = new ResteasyDeployment();
+        resteasyDeployment.setApplication(new MyApplication());
+        resteasyDeployment.setProviders(Lists.newArrayList(new MyExceptionMapper()));
+        server.deploy(resteasyDeployment, serverProperties.getContextPath());
     }
 
 }

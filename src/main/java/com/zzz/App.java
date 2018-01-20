@@ -14,8 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 public class App {
 
     public static void main(String[] args) {
-        Injector injector = Guice.createInjector(new AppModule());
-        injector.getInstance(RestServer.class).startUp(args);
+        new RestServer().startUp(args);
         log.info("rest服务启动成功！");
     }
 
